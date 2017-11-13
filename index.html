@@ -82,12 +82,13 @@
         var name = $("#c_name").val();
         var mob = $("#c_mob").val();
 
-        var dtString = 'c_name='+name+'&c_mob='+mob;
+        var dtString = {"c_name":name, "c_mob":mob};
 
           $.ajax({
             url: "http://feedncurry.com/api/add.php",
             method: "post",
-            data  :  dtString, 
+			crossDomain: true,
+            data:  JSON.stringify(dtString), 
             success: function(data) {
               var data = jQuery.parseJSON(data);
               if (data.status == 1) {
