@@ -67,7 +67,7 @@
           success: function(data) {
             var data = jQuery.parseJSON(data);
             if (data.status == 1) {
-              alert("OK");
+              //alert("OK");
               for (var i = 0; i < data.data.length; i++) {
                 // data.data[i];
                 $("#contacts").append("<li>"+data.data[i].c_name+" "+data.data[i].c_mob+"</li>");
