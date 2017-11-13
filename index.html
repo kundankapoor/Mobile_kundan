@@ -3,6 +3,8 @@
 <html lang="en">
 
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -52,12 +54,12 @@
                         <form action="#" method="post" class="form">
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <input type="text" name="firstname" class="form-control" placeholder="Enter Your Name" required>
+                                    <input type="text" name="c_name" id="c_name" class="form-control" placeholder="Enter Your Name" required>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <input type="number" name="t_phone" class="form-control" placeholder="Phone Number" required>
+                                    <input type="number" name="c_mob" id="c_mob" class="form-control" placeholder="Phone Number" required>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -76,19 +78,28 @@
         
     </div>
     <script type="text/javascript">
-      /*$.ajax({
-          url: "http://feedncurry.com/api/list.php",
-          method: "post",
-          success: function(data) {
-            var data = jQuery.parseJSON(data);
-            if (data.status == 1) {
-              alert("OK");
-            }else{
-              alert("Not OK");
-            }
-          },
-          error: function() {}
-      })*/
+      $("#submit").on('click',function() {
+        var name = $("#c_name").val();
+        var mob = $("#c_mob").val();
+
+        var dtString = 'c_name='+name+'&c_mob='+mob;
+
+          $.ajax({
+            url: "http://feedncurry.com/api/add.php",
+            method: "post",
+            data  :  dtString, 
+            success: function(data) {
+              var data = jQuery.parseJSON(data);
+              if (data.status == 1) {
+                alert(data.data);
+              }else{
+                alert(data.error);
+              }
+            },
+            error: function() {}
+        })
+      })
+      
     </script>
 </body>
 
